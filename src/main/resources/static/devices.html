@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="PulseWatch — Device Operations"
+    >
+
+    <title>PulseWatch | Device Operations</title>
+
+    <link
+        rel="stylesheet"
+        href="css/devices.css"
+    >
+</head>
+
+<body>
+
+    <!-- =========================================
+         APPLICATION HEADER
+    ========================================== -->
+
+    <header class="app-header">
+
+        <div class="header-inner">
+
+            <a
+                href="/dashboard.html"
+                class="brand"
+            >
+
+                <span class="brand-mark">
+                    PW
+                </span>
+
+                <span class="brand-text">
+
+                    <strong>
+                        PulseWatch
+                    </strong>
+
+                    <small>
+                        IoT Monitoring Platform
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav class="main-nav">
+
+                <a href="/dashboard.html">
+                    Dashboard
+                </a>
+
+                <a
+                    href="/devices.html"
+                    class="active"
+                >
+                    Devices
+                </a>
+
+                <a href="/alerts.html">
+                    Alerts
+                </a>
+
+                <a href="/telemetry.html">
+                    Telemetry
+                </a>
+
+            </nav>
+
+
+            <div class="system-status">
+
+                <span
+                    class="status-indicator"
+                    id="statusIndicator"
+                ></span>
+
+                <span id="connectionStatus">
+                    CONNECTING
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main class="page-container">
+
+
+        <!-- =====================================
+             PAGE INTRO
+        ====================================== -->
+
+        <section class="page-intro">
+
+            <div>
+
+                <p class="eyebrow">
+                    DEVICE OPERATIONS
+                </p>
+
+                <h1>
+                    Device Fleet
+                </h1>
+
+                <p class="intro-text">
+                    Inspect connected infrastructure,
+                    review device health and investigate
+                    live telemetry.
+                </p>
+
+            </div>
+
+
+            <div class="fleet-summary">
+
+                <span
+                    class="fleet-summary-value"
+                    id="fleetCount"
+                >
+                    0
+                </span>
+
+                <span class="fleet-summary-label">
+                    registered devices
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             DEVICE WORKSPACE
+        ====================================== -->
+
+        <section class="device-workspace">
+
+
+            <!-- =================================
+                 DEVICE DIRECTORY
+            ================================== -->
+
+            <aside class="device-directory">
+
+                <div class="directory-header">
+
+                    <div>
+
+                        <p class="section-eyebrow">
+                            INFRASTRUCTURE
+                        </p>
+
+                        <h2>
+                            Devices
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="directory-count"
+                        id="directoryCount"
+                    >
+                        0
+                    </span>
+
+                </div>
+
+
+                <!-- Search -->
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        type="text"
+                        id="deviceSearch"
+                        placeholder="Search devices..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- Status filter -->
+
+                <div class="filter-row">
+
+                    <button
+                        class="filter-button active"
+                        data-filter="ALL"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="ONLINE"
+                    >
+                        Online
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="OFFLINE"
+                    >
+                        Offline
+                    </button>
+
+                </div>
+
+
+                <!-- Device list -->
+
+                <div
+                    class="device-list"
+                    id="deviceList"
+                >
+
+                    <div class="loading-state">
+                        Loading devices...
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+            <!-- =================================
+                 DEVICE DETAIL PANEL
+            ================================== -->
+
+            <section
+                class="device-detail"
+                id="deviceDetail"
+            >
+
+                <!-- Empty selection state -->
+
+                <div
+                    class="selection-state"
+                    id="selectionState"
+                >
+
+                    <div class="selection-icon">
+                        ◈
+                    </div>
+
+                    <h2>
+                        Select a device
+                    </h2>
+
+                    <p>
+                        Choose a device from the fleet
+                        directory to inspect its current
+                        state and telemetry.
+                    </p>
+
+                </div>
+
+
+                <!-- Actual device detail -->
+
+                <div
+                    class="device-detail-content"
+                    id="deviceDetailContent"
+                    hidden
+                >
+
+                    <!-- Device identity -->
+
+                    <div class="detail-header">
+
+                        <div>
+
+                            <p class="section-eyebrow">
+                                DEVICE PROFILE
+                            </p>
+
+                            <h2
+                                id="detailDeviceName"
+                            >
+                                —
+                            </h2>
+
+                            <p
+                                class="detail-meta"
+                                id="detailDeviceMeta"
+                            >
+                                —
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="detail-status"
+                            id="detailStatus"
+                        >
+                            <span class="status-dot"></span>
+                            <span id="detailStatusText">
+                                —
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Live readings -->
+
+                    <section class="telemetry-overview">
+
+                        <div class="section-title-row">
+
+                            <div>
+
+                                <p class="section-eyebrow">
+                                    LIVE TELEMETRY
+                                </p>
+
+                                <h3>
+                                    Current readings
+                                </h3>
+
+                            </div>
+
+                            <span
+                                class="live-indicator"
+                                id="liveIndicator"
+                            >
+                                LIVE
+                            </span>
+
+                        </div>
+
+
+                        <div class="metric-grid">
+
+
+                            <article class="metric-panel">
+
+                                <div class="metric-icon temperature">
+                                    TEMP
+                                </div>
+
+                                <div class="metric-content">
+
+                                    <span class="metric-label">
+                                        Temperature
+                                    </span>
+
+                                    <strong
+                                        id="detailTemperature"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </article>
+
+
+                            <article class="metric-panel">
+
+                                <div class="metric-icon humidity">
+                                    HUM
+                                </div>
+
+                                <div class="metric-content">
+
+                                    <span class="metric-label">
+                                        Humidity
+                                    </span>
+
+                                    <strong
+                                        id="detailHumidity"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </article>
+
+
+                            <article class="metric-panel">
+
+                                <div class="metric-icon battery">
+                                    BAT
+                                </div>
+
+                                <div class="metric-content">
+
+                                    <span class="metric-label">
+                                        Battery
+                                    </span>
+
+                                    <strong
+                                        id="detailBattery"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </article>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- Lower information area -->
+
+                    <div class="detail-lower-grid">
+
+
+                        <!-- Device information -->
+
+                        <section class="information-panel">
+
+                            <div class="panel-heading">
+
+                                <div>
+
+                                    <p class="section-eyebrow">
+                                        DEVICE INFORMATION
+                                    </p>
+
+                                    <h3>
+                                        Configuration
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-list">
+
+                                <div class="info-row">
+
+                                    <span>
+                                        Device ID
+                                    </span>
+
+                                    <strong
+                                        id="infoDeviceId"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-row">
+
+                                    <span>
+                                        Location
+                                    </span>
+
+                                    <strong
+                                        id="infoLocation"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-row">
+
+                                    <span>
+                                        Registered
+                                    </span>
+
+                                    <strong
+                                        id="infoCreatedAt"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-row">
+
+                                    <span>
+                                        Last telemetry
+                                    </span>
+
+                                    <strong
+                                        id="infoLastTelemetry"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- Recent telemetry -->
+
+                        <section class="information-panel">
+
+                            <div class="panel-heading">
+
+                                <div>
+
+                                    <p class="section-eyebrow">
+                                        RECENT ACTIVITY
+                                    </p>
+
+                                    <h3>
+                                        Telemetry history
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="telemetry-history"
+                                id="telemetryHistory"
+                            >
+
+                                <div class="history-empty">
+                                    No telemetry available.
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- =================================
+                         MONITORING THRESHOLDS
+                    ================================== -->
+
+                    <section class="threshold-panel">
+
+                        <div class="threshold-header">
+
+                            <div>
+                                <p class="section-eyebrow">
+                                    MONITORING RULES
+                                </p>
+
+                                <h3>
+                                    Alert thresholds
+                                </h3>
+
+                                <p class="threshold-description">
+                                    Define the limits PulseWatch should use
+                                    when evaluating this device's telemetry.
+                                </p>
+                            </div>
+
+                            <span class="threshold-scope">
+                                DEVICE-SPECIFIC
+                            </span>
+
+                        </div>
+
+
+                        <div class="threshold-grid">
+
+                            <label class="threshold-field">
+
+                                <span class="threshold-label">
+                                    Temperature
+                                </span>
+
+                                <div class="threshold-input-wrap">
+                                    <input
+                                        type="number"
+                                        id="thresholdTemperature"
+                                        min="0"
+                                        step="0.1"
+                                        inputmode="decimal"
+                                    >
+                                    <span>°C</span>
+                                </div>
+
+                            </label>
+
+
+                            <label class="threshold-field">
+
+                                <span class="threshold-label">
+                                    Humidity
+                                </span>
+
+                                <div class="threshold-input-wrap">
+                                    <input
+                                        type="number"
+                                        id="thresholdHumidity"
+                                        min="0"
+                                        step="0.1"
+                                        inputmode="decimal"
+                                    >
+                                    <span>%</span>
+                                </div>
+
+                            </label>
+
+
+                            <label class="threshold-field">
+
+                                <span class="threshold-label">
+                                    Battery
+                                </span>
+
+                                <div class="threshold-input-wrap">
+                                    <input
+                                        type="number"
+                                        id="thresholdBattery"
+                                        min="0"
+                                        step="0.1"
+                                        inputmode="decimal"
+                                    >
+                                    <span>%</span>
+                                </div>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="threshold-actions">
+
+                            <span
+                                class="threshold-message"
+                                id="thresholdMessage"
+                                aria-live="polite"
+                            ></span>
+
+                            <button
+                                type="button"
+                                class="threshold-save-button"
+                                id="saveThresholdsButton"
+                            >
+                                Save Changes
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="app-footer">
+
+        <div class="footer-inner">
+
+            <span>
+                PulseWatch
+            </span>
+
+            <span>
+                Real-Time IoT Device Monitoring
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================
+         WEBSOCKET DEPENDENCIES
+    ========================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+
+
+    <!-- PAGE JAVASCRIPT -->
+
+    <script src="js/devices.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="PulseWatch — Alert Investigation"
+    >
+
+    <title>PulseWatch | Alerts</title>
+
+    <link
+        rel="stylesheet"
+        href="css/alerts.css"
+    >
+
+</head>
+
+<body>
+
+
+    <!-- =========================================
+         APPLICATION HEADER
+    ========================================== -->
+
+    <header class="app-header">
+
+        <div class="header-inner">
+
+
+            <a
+                href="/dashboard.html"
+                class="brand"
+            >
+
+                <span class="brand-mark">
+                    PW
+                </span>
+
+                <span class="brand-text">
+
+                    <strong>
+                        PulseWatch
+                    </strong>
+
+                    <small>
+                        IoT Monitoring Platform
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav class="main-nav">
+
+                <a href="/dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="/devices.html">
+                    Devices
+                </a>
+
+                <a
+                    href="/alerts.html"
+                    class="active"
+                >
+                    Alerts
+                </a>
+
+                <a href="/telemetry.html">
+                    Telemetry
+                </a>
+
+            </nav>
+
+
+            <div class="system-status">
+
+                <span
+                    class="status-indicator"
+                    id="statusIndicator"
+                ></span>
+
+                <span id="connectionStatus">
+                    CONNECTING
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main class="page-container">
+
+
+        <!-- =====================================
+             PAGE INTRO
+        ====================================== -->
+
+        <section class="page-intro">
+
+            <div>
+
+                <p class="eyebrow">
+                    ALERT OPERATIONS
+                </p>
+
+                <h1>
+                    Alert Investigation
+                </h1>
+
+                <p class="intro-text">
+                    Review active incidents, investigate
+                    alert conditions and manage their
+                    lifecycle.
+                </p>
+
+            </div>
+
+
+            <div class="alert-summary">
+
+                <span
+                    id="totalAlerts"
+                    class="summary-total"
+                >
+                    0
+                </span>
+
+                <span class="summary-label">
+                    total events
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ALERT WORKSPACE
+        ====================================== -->
+
+        <section class="alert-workspace">
+
+
+            <!-- =================================
+                 ALERT DIRECTORY
+            ================================== -->
+
+            <aside class="alert-directory">
+
+
+                <div class="directory-header">
+
+                    <div>
+
+                        <p class="section-eyebrow">
+                            INCIDENT STREAM
+                        </p>
+
+                        <h2>
+                            Alerts
+                        </h2>
+
+                    </div>
+
+
+                    <span
+                        class="directory-count"
+                        id="directoryCount"
+                    >
+                        0
+                    </span>
+
+                </div>
+
+
+
+                <!-- Search -->
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        type="text"
+                        id="alertSearch"
+                        placeholder="Search alerts..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+
+                <!-- Status filters -->
+
+                <div class="filter-group">
+
+                    <button
+                        type="button"
+                        class="filter-button active"
+                        data-status="ALL"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-status="OPEN"
+                    >
+                        Open
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-status="ACKNOWLEDGED"
+                    >
+                        Ack
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-status="RESOLVED"
+                    >
+                        Resolved
+                    </button>
+
+                </div>
+
+
+
+                <!-- Alert list -->
+
+                <div
+                    class="alert-list"
+                    id="alertList"
+                >
+
+                    <div class="loading-state">
+                        Loading alerts...
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+
+            <!-- =================================
+                 ALERT DETAIL
+            ================================== -->
+
+            <section
+                class="alert-detail"
+                id="alertDetail"
+            >
+
+
+                <!-- Empty selection -->
+
+                <div
+                    class="selection-state"
+                    id="selectionState"
+                >
+
+                    <div class="selection-icon">
+                        !
+                    </div>
+
+                    <h2>
+                        Select an alert
+                    </h2>
+
+                    <p>
+                        Choose an alert from the incident
+                        stream to investigate its details
+                        and manage its lifecycle.
+                    </p>
+
+                </div>
+
+
+
+                <!-- Actual alert detail -->
+
+                <div
+                    class="alert-detail-content"
+                    id="alertDetailContent"
+                    hidden
+                >
+
+
+                    <!-- =================================
+                         ALERT HEADER
+                    ================================== -->
+
+                    <div class="detail-header">
+
+
+                        <div>
+
+                            <p class="section-eyebrow">
+                                ALERT EVENT
+                            </p>
+
+                            <h2
+                                id="detailAlertType"
+                            >
+                                —
+                            </h2>
+
+                            <p
+                                class="detail-device"
+                                id="detailDevice"
+                            >
+                                —
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="detail-severity"
+                            id="detailSeverity"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         CURRENT STATE
+                    ================================== -->
+
+                    <section class="state-section">
+
+
+                        <div class="state-heading">
+
+                            <div>
+
+                                <p class="section-eyebrow">
+                                    INCIDENT STATUS
+                                </p>
+
+                                <h3>
+                                    Current state
+                                </h3>
+
+                            </div>
+
+
+                            <span
+                                class="status-badge"
+                                id="detailStatus"
+                            >
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="alert-message"
+                            id="detailMessage"
+                        >
+                            —
+                        </div>
+
+
+                        <!-- Actions -->
+
+                        <div
+                            class="alert-actions"
+                            id="alertActions"
+                        >
+
+                            <!-- Buttons are inserted
+                                 dynamically by JS -->
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- =================================
+                         EVENT INFORMATION
+                    ================================== -->
+
+                    <div class="detail-grid">
+
+
+                        <section class="information-panel">
+
+
+                            <div class="panel-heading">
+
+                                <p class="section-eyebrow">
+                                    EVENT INFORMATION
+                                </p>
+
+                                <h3>
+                                    Alert details
+                                </h3>
+
+                            </div>
+
+
+                            <div class="info-list">
+
+
+                                <div class="info-row">
+
+                                    <span>
+                                        Alert ID
+                                    </span>
+
+                                    <strong
+                                        id="infoAlertId"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-row">
+
+                                    <span>
+                                        Device
+                                    </span>
+
+                                    <strong
+                                        id="infoDeviceName"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-row">
+
+                                    <span>
+                                        Location
+                                    </span>
+
+                                    <strong
+                                        id="infoLocation"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-row">
+
+                                    <span>
+                                        Severity
+                                    </span>
+
+                                    <strong
+                                        id="infoSeverity"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+                        </section>
+
+
+
+                        <!-- =================================
+                             TIMELINE
+                        ================================== -->
+
+                        <section class="information-panel">
+
+
+                            <div class="panel-heading">
+
+                                <p class="section-eyebrow">
+                                    EVENT TIMELINE
+                                </p>
+
+                                <h3>
+                                    Alert lifecycle
+                                </h3>
+
+                            </div>
+
+
+                            <div class="timeline">
+
+
+                                <div
+                                    class="timeline-item"
+                                    id="timelineCreated"
+                                >
+
+                                    <span class="timeline-marker">
+                                        1
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Alert created
+                                        </strong>
+
+                                        <span
+                                            id="createdTime"
+                                        >
+                                            —
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div
+                                    class="timeline-item"
+                                    id="timelineAcknowledged"
+                                >
+
+                                    <span class="timeline-marker">
+                                        2
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Acknowledged
+                                        </strong>
+
+                                        <span
+                                            id="acknowledgedTime"
+                                        >
+                                            Awaiting acknowledgement
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div
+                                    class="timeline-item"
+                                    id="timelineResolved"
+                                >
+
+                                    <span class="timeline-marker">
+                                        3
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Resolved
+                                        </strong>
+
+                                        <span
+                                            id="resolvedTime"
+                                        >
+                                            Awaiting resolution
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="app-footer">
+
+        <div class="footer-inner">
+
+            <span>
+                PulseWatch
+            </span>
+
+            <span>
+                Real-Time IoT Device Monitoring
+            </span>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         WEBSOCKET DEPENDENCIES
+    ========================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+
+
+    <!-- PAGE JAVASCRIPT -->
+
+    <script src="js/alerts.js"></script>
+
+</body>
+
+</html>

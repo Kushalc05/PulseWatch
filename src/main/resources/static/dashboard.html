@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="PulseWatch — Real-Time IoT Device Monitoring & Alert Platform">
+
+    <title>Dashboard | PulseWatch</title>
+
+    <link
+        rel="stylesheet"
+        href="css/dashboard.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="app-header">
+
+    <div class="nav-container">
+
+        <a
+            href="/dashboard.html"
+            class="brand">
+
+            <div class="brand-mark">
+                PW
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    PulseWatch
+                </strong>
+
+                <span>
+                    IoT Monitoring Platform
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <nav class="main-nav">
+
+            <a
+                href="/dashboard.html"
+                class="nav-link active">
+                Dashboard
+            </a>
+
+            <a
+                href="/devices.html"
+                class="nav-link">
+                Devices
+            </a>
+
+            <a
+                href="/alerts.html"
+                class="nav-link">
+                Alerts
+            </a>
+
+            <a
+                href="/telemetry.html"
+                class="nav-link">
+                Telemetry
+            </a>
+
+        </nav>
+
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            <span id="connectionStatus">
+                Connecting...
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN DASHBOARD
+====================================================== -->
+
+<main class="dashboard">
+
+
+    <!-- =================================================
+         PAGE INTRO
+    ================================================== -->
+
+    <section class="page-intro">
+
+        <div>
+
+            <span class="eyebrow">
+                OPERATIONS CENTER
+            </span>
+
+            <h1>
+                System Overview
+            </h1>
+
+            <p>
+                Real-time visibility across your connected device fleet.
+            </p>
+
+        </div>
+
+
+        <div class="live-indicator">
+
+            <span></span>
+
+            LIVE MONITORING
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SUMMARY METRICS
+    ================================================== -->
+
+    <section class="metrics">
+
+
+        <div class="metric">
+
+            <div class="metric-top">
+
+                <span>
+                    DEVICES
+                </span>
+
+                <span class="metric-icon">
+                    01
+                </span>
+
+            </div>
+
+            <strong id="deviceCount">
+                0
+            </strong>
+
+            <small>
+                Registered devices
+            </small>
+
+        </div>
+
+
+
+        <div class="metric">
+
+            <div class="metric-top">
+
+                <span>
+                    ONLINE
+                </span>
+
+                <span class="metric-icon">
+                    02
+                </span>
+
+            </div>
+
+            <strong id="onlineCount">
+                0
+            </strong>
+
+            <small>
+                Currently reporting
+            </small>
+
+        </div>
+
+
+
+        <div class="metric alert-metric">
+
+            <div class="metric-top">
+
+                <span>
+                    ACTIVE ALERTS
+                </span>
+
+                <span class="metric-icon">
+                    03
+                </span>
+
+            </div>
+
+            <strong id="alertCount">
+                0
+            </strong>
+
+            <small>
+                Requiring attention
+            </small>
+
+        </div>
+
+
+
+        <div class="metric">
+
+            <div class="metric-top">
+
+                <span>
+                    CONNECTION
+                </span>
+
+                <span class="metric-icon">
+                    04
+                </span>
+
+            </div>
+
+            <strong id="connectionMetric">
+                LIVE
+            </strong>
+
+            <small>
+                WebSocket channel
+            </small>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         DEVICE FLEET
+    ================================================== -->
+
+    <section class="panel fleet-panel">
+
+
+        <div class="panel-header">
+
+            <div>
+
+                <span class="panel-label">
+                    DEVICE FLEET
+                </span>
+
+                <h2>
+                    Connected Machines
+                </h2>
+
+                <p>
+                    Current state and latest telemetry from your device fleet.
+                </p>
+
+            </div>
+
+
+            <a href="/devices.html">
+                Manage devices →
+            </a>
+
+        </div>
+
+
+        <div
+            id="deviceGrid"
+            class="device-list">
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SYSTEM ACTIVITY
+    ================================================== -->
+
+    <section class="panel activity-panel">
+
+
+        <div class="panel-header">
+
+            <div>
+
+                <span class="panel-label">
+                    SYSTEM ACTIVITY
+                </span>
+
+                <h2>
+                    Recent Events
+                </h2>
+
+                <p>
+                    Important alert notifications and system events.
+                </p>
+
+            </div>
+
+
+            <div class="activity-header-actions">
+
+                <span class="activity-live">
+
+                    <span></span>
+
+                    LIVE
+
+                </span>
+
+
+                <a href="/alerts.html">
+                    Open alert center →
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <div
+            id="activityContainer"
+            class="activity-list">
+
+            <div class="empty-state">
+                Waiting for system activity...
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         TELEMETRY SNAPSHOT
+    ================================================== -->
+
+    <section class="panel telemetry-panel">
+
+
+        <div class="panel-header">
+
+            <div>
+
+                <span class="panel-label">
+                    TELEMETRY
+                </span>
+
+                <h2>
+                    Live Data Snapshot
+                </h2>
+
+                <p>
+                    Current aggregate readings from reporting devices.
+                </p>
+
+            </div>
+
+
+            <a href="/telemetry.html">
+                Analyze telemetry →
+            </a>
+
+        </div>
+
+
+
+        <div class="telemetry-strip">
+
+
+            <div class="telemetry-info">
+
+                <span class="telemetry-symbol">
+                    T
+                </span>
+
+                <div>
+
+                    <small>
+                        Temperature
+                    </small>
+
+                    <strong id="avgTemperature">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="telemetry-info">
+
+                <span class="telemetry-symbol">
+                    H
+                </span>
+
+                <div>
+
+                    <small>
+                        Humidity
+                    </small>
+
+                    <strong id="avgHumidity">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="telemetry-info">
+
+                <span class="telemetry-symbol">
+                    B
+                </span>
+
+                <div>
+
+                    <small>
+                        Battery
+                    </small>
+
+                    <strong id="avgBattery">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="telemetry-info telemetry-note">
+
+                <div>
+
+                    <small>
+                        STREAM
+                    </small>
+
+                    <strong>
+                        WebSocket
+                    </strong>
+
+                </div>
+
+                <span class="stream-dot"></span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="app-footer">
+
+    <div class="footer-inner">
+
+        <div>
+
+            <strong>
+                PulseWatch
+            </strong>
+
+            <span>
+                Real-Time IoT Device Monitoring & Alert Platform
+            </span>
+
+        </div>
+
+
+        <span>
+            Java · Spring Boot · MySQL · WebSocket
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     WEBSOCKET LIBRARIES
+====================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js">
+</script>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js">
+</script>
+
+
+<!-- =====================================================
+     DASHBOARD LOGIC
+====================================================== -->
+
+<script src="js/dashboard.js"></script>
+
+
+</body>
+
+</html>
