@@ -500,25 +500,60 @@ PulseWatch/
 │   │   ├── java/
 │   │   │   └── com/
 │   │   │       └── pulsewatch/
+│   │   │           │
 │   │   │           ├── config/
+│   │   │           │   └── WebSocketConfig.java
+│   │   │           │
 │   │   │           ├── controller/
+│   │   │           │   ├── AlertController.java
+│   │   │           │   ├── DeviceController.java
+│   │   │           │   ├── TelemetryController.java
+│   │   │           │   └── ThresholdConfigurationController.java
+│   │   │           │
 │   │   │           ├── dto/
+│   │   │           │   ├── TelemetryRequest.java
+│   │   │           │   └── ThresholdConfigurationRequest.java
+│   │   │           │
 │   │   │           ├── entity/
+│   │   │           │   ├── Alert.java
+│   │   │           │   ├── AlertSeverity.java
+│   │   │           │   ├── AlertStatus.java
+│   │   │           │   ├── Device.java
+│   │   │           │   ├── DeviceStatus.java
+│   │   │           │   ├── Telemetry.java
+│   │   │           │   └── ThresholdConfiguration.java
+│   │   │           │
 │   │   │           ├── exception/
+│   │   │           │   ├── GlobalExceptionHandler.java
+│   │   │           │   └── ResourceNotFoundException.java
+│   │   │           │
 │   │   │           ├── repository/
+│   │   │           │   ├── AlertRepository.java
+│   │   │           │   ├── DeviceRepository.java
+│   │   │           │   ├── TelemetryRepository.java
+│   │   │           │   └── ThresholdConfigurationRepository.java
+│   │   │           │
 │   │   │           ├── service/
+│   │   │           │   ├── AlertService.java
+│   │   │           │   ├── DeviceService.java
+│   │   │           │   ├── DeviceStatusMonitorService.java
+│   │   │           │   ├── TelemetryService.java
+│   │   │           │   ├── ThresholdConfigurationService.java
+│   │   │           │   └── WebSocketService.java
+│   │   │           │
 │   │   │           ├── simulator/
+│   │   │           │   ├── DeviceSimulator.java
+│   │   │           │   └── VirtualDeviceSimulatorService.java
+│   │   │           │
 │   │   │           └── PulsewatchApplication.java
 │   │   │
 │   │   └── resources/
 │   │       ├── static/
-│   │       │   ├── css/
-│   │       │   ├── js/
-│   │       │   └── index.html
+│   │       │   ├── index.html
+│   │       │   ├── dashboard.js
+│   │       │   └── ...
 │   │       │
 │   │       └── application.properties
-│   │
-│   └── test/
 │
 ├── docs/
 │   └── pulsewatch-architecture.png
@@ -527,6 +562,7 @@ PulseWatch/
 ├── pom.xml
 ├── mvnw
 ├── mvnw.cmd
+├── .gitignore
 └── README.md
 ~~~
 
