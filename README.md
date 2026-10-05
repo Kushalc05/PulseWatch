@@ -2,194 +2,17 @@
 
 ### Real-Time IoT Device Monitoring & Alert Platform
 
-PulseWatch is a software-based IoT device monitoring platform built with Java and Spring Boot.
-
-It uses simulated IoT devices that periodically generate temperature, humidity, and battery readings. The readings are sent to a Spring Boot backend through REST APIs, stored in MySQL, evaluated against configurable thresholds, and used to generate alerts.
-
-The dashboard receives real-time telemetry, device-status, and alert updates through WebSocket without requiring a page refresh.
-# PulseWatch
-
-### Real-Time IoT Device Monitoring & Alert Platform
-
 [![Java](https://img.shields.io/badge/Java-25-orange)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.x-brightgreen)](https://spring.io/projects/spring-boot)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/)
-[![WebSocket](https://img.shields.io/badge/WebSocket-Real--Time-black)](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
+[![WebSocket](https://img.shields.io/badge/WebSocket-Real--Time%20Updates-purple)](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
 
-> A software-based IoT monitoring platform that simulates connected devices, processes telemetry in real time, detects abnormal conditions, manages alerts, and provides a live monitoring dashboard.
+PulseWatch is a **real-time IoT device monitoring and alert platform** built with Java and Spring Boot.
 
-**Live Demo:**  
-https://pulsewatch-d1yd.onrender.com/
+The platform uses software-simulated IoT devices that continuously generate temperature, humidity, and battery readings. These readings are sent to the backend, validated, stored in MySQL, evaluated against configurable thresholds, and used to generate and manage alerts.
 
-**GitHub:**  
-https://github.com/Kushalc05/PulseWatch
+The dashboard receives real-time telemetry, device-status, and alert updates through WebSocket without requiring a page refresh.
 
----
-
-## Overview
-
-PulseWatch is a backend-focused IoT monitoring platform built with **Java and Spring Boot**.
-
-Instead of relying on physical hardware, the system uses **software-simulated IoT devices** that periodically generate:
-
-- Temperature
-- Humidity
-- Battery level
-
-The generated telemetry is processed by the Spring Boot backend, validated, stored in MySQL, evaluated against configurable thresholds, and used to generate alerts when abnormal conditions persist.
-
-The web dashboard receives telemetry, device-status, and alert updates in real time through **WebSocket**, allowing monitoring without manually refreshing the page.
-
-The project is designed to demonstrate practical backend engineering concepts such as:
-
-- REST API design
-- Layered architecture
-- Database relationships
-- Business logic
-- Input validation
-- Exception handling
-- Threshold-based monitoring
-- Alert lifecycle management
-- Real-time communication
-- IoT device simulation
-
----
-
-# ✨ Key Features
-
-### Device Monitoring
-
-- Register and manage simulated IoT devices
-- Track device locations
-- Monitor device online/offline status
-- Track the latest telemetry timestamp
-
-### Telemetry Processing
-
-- Temperature monitoring
-- Humidity monitoring
-- Battery monitoring
-- REST-based telemetry ingestion
-- Input validation
-- Persistent telemetry history
-- Device-specific telemetry retrieval
-
-### Intelligent Alerting
-
-- Configurable thresholds per device
-- Persistent abnormal-reading detection
-- Alert severity levels
-- Duplicate alert prevention
-- Automatic alert resolution after recovery
-- Alert acknowledgement and resolution
-- Complete alert history
-
-### Real-Time Dashboard
-
-- Live device status
-- Live telemetry readings
-- Active alerts
-- Alert history
-- Telemetry history
-- Real-time updates without page refresh
-- WebSocket-based communication
-
-### Reliability & Validation
-
-- Request validation
-- Device existence validation
-- Centralized exception handling
-- Device offline detection
-- Controlled alert lifecycle
-
----
-
-# 🛠️ Tech Stack
-
-## Backend
-
-- **Java 25**
-- **Spring Boot**
-- **Spring Data JPA**
-- **Hibernate**
-- **REST APIs**
-- **WebSocket**
-- **Maven**
-
-## Database
-
-- **MySQL 8**
-
-## Frontend
-
-- **HTML**
-- **CSS**
-- **JavaScript**
-
-## Development & Testing
-
-- **Visual Studio Code**
-- **MySQL Workbench**
-- **Postman**
-- **Git**
-- **GitHub**
-
-## Deployment
-
-- **Render**
-- **Aiven MySQL**
-- **Docker**
-
-Docker is used only as the deployment packaging mechanism for the Spring Boot application.
-
----
-
-# 🏗️ System Architecture
-
-PulseWatch follows a layered Spring Boot architecture where simulated devices generate telemetry, the backend processes the data, and the dashboard receives real-time updates.
-
-```text
-                    ┌──────────────────────┐
-                    │   Virtual Devices    │
-                    │──────────────────────│
-                    │ Temperature           │
-                    │ Humidity              │
-                    │ Battery               │
-                    └──────────┬───────────┘
-                               │
-                               │ REST
-                               ▼
-                    ┌──────────────────────┐
-                    │     Spring Boot      │
-                    │       Backend        │
-                    └──────────┬───────────┘
-                               │
-              ┌────────────────┼────────────────┐
-              │                │                │
-              ▼                ▼                ▼
-      ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
-      │   Telemetry  │ │    Alert     │ │    Device    │
-      │    Service   │ │    Service   │ │    Service   │
-      └──────┬───────┘ └──────┬───────┘ └──────┬───────┘
-             │                │                │
-             └────────────────┼────────────────┘
-                              │
-                              ▼
-                     ┌─────────────────┐
-                     │      MySQL      │
-                     │    Database     │
-                     └────────┬────────┘
-                              │
-                              │ WebSocket
-                              ▼
-                  ┌────────────────────────┐
-                  │   PulseWatch Dashboard │
-                  │                        │
-                  │ Live Telemetry         │
-                  │ Device Status          │
-                  │ Active Alerts          │
-                  │ Alert History          │
-                  └────────────────────────┘
 > PulseWatch uses software-simulated IoT devices to demonstrate telemetry ingestion, monitoring, threshold-based alerting, and real-time dashboard updates.
 
 ---
@@ -198,356 +21,467 @@ PulseWatch follows a layered Spring Boot architecture where simulated devices ge
 
 - Software-simulated IoT devices
 - Device registration and monitoring
-- Temperature, humidity, and battery telemetry
-- REST API for telemetry ingestion
-- Telemetry storage using MySQL
+- Simulated IoT telemetry generation
+- Temperature, humidity, and battery monitoring
+- REST API-based telemetry ingestion
+- Input validation
+- MySQL data persistence
 - Configurable monitoring thresholds
 - Automatic alert generation
-- Alert severity levels
 - Alert lifecycle management
-- Alert acknowledgement and resolution
 - Duplicate alert prevention
-- Automatic alert resolution after recovery
+- Automatic alert resolution
 - Device online/offline detection
-- Real-time dashboard updates using WebSocket
-- Telemetry history
+- Real-time WebSocket updates
+- Dashboard-based monitoring
 - Alert history
-- Centralized exception handling
-- Input validation
+- Telemetry history
+- Cloud deployment with a live demo
 
 ---
 
-## Tech Stack
+## ✨ Key Features
 
-### Backend
+## 📡 Device Monitoring
 
-- Java 25
-- Spring Boot
-- Spring Data JPA
-- Hibernate
-- REST APIs
-- WebSocket
-- Maven
+PulseWatch monitors multiple software-simulated devices.
 
-### Database
+Each device contains:
 
-- MySQL 8
-
-### Frontend
-
-- HTML
-- CSS
-- JavaScript
-
-### Development Tools
-
-- Visual Studio Code
-- MySQL Workbench
-- Postman
-- Git & GitHub
-
----
-
-## System Architecture
-
-```text
-                 +----------------------+
-                 |   Device Simulator   |
-                 |----------------------|
-                 | Temperature          |
-                 | Humidity             |
-                 | Battery              |
-                 +----------+-----------+
-                            |
-                            | REST API
-                            v
-                 +----------------------+
-                 |    Spring Boot       |
-                 |      Backend         |
-                 +----------+-----------+
-                            |
-            +---------------+---------------+
-            |               |               |
-            v               v               v
-     +-------------+  +-------------+  +-------------+
-     |  Telemetry  |  |    Alert    |  |   Device    |
-     |   Service   |  |   Service   |  |   Service   |
-     +------+------+  +------+------+  +------+------+
-            |                |               |
-            +----------------+---------------+
-                             |
-                             v
-                     +---------------+
-                     |     MySQL     |
-                     +---------------+
-
-                             |
-                             | WebSocket
-                             v
-
-                 +----------------------+
-                 |   PulseWatch Web     |
-                 |      Dashboard       |
-                 +----------------------+
-```
-
----
-### Architecture Diagram
-
-![PulseWatch System Architecture](docs/pulsewatch-architecture.png)
-
-## How It Works
-
-### 1. Device Simulation
-
-The device simulator represents multiple virtual IoT devices.
-
-Each device periodically generates:
-
+- Device name
+- Location
+- Current status
+- Last telemetry timestamp
 - Temperature
 - Humidity
 - Battery level
 
-The simulator sends these readings to the backend through:
+Devices are automatically marked **ONLINE** when telemetry is received.
 
-```text
-POST /api/telemetry
-```
+If telemetry stops arriving for the configured timeout period, the device is automatically marked **OFFLINE**.
 
 ---
 
-### 2. Telemetry Processing
+## 🌡️ Telemetry Processing
 
-When telemetry reaches the backend:
+Each simulated device periodically generates:
 
-1. The device is identified.
-2. The telemetry values are validated.
-3. The device is marked as online.
-4. The latest telemetry timestamp is updated.
-5. The telemetry is stored in MySQL.
-6. The readings are checked against the device's configured thresholds.
-7. Real-time telemetry is sent to connected dashboard clients.
+- Temperature
+- Humidity
+- Battery percentage
 
----
+The readings are sent to the Spring Boot backend through a REST API.
 
-### 3. Threshold Monitoring
+The backend then:
 
-Each device can have its own threshold configuration.
-
-The default thresholds are:
-
-| Metric | Default Threshold |
-|--------|-------------------|
-| Temperature | 80°C |
-| Humidity | 80% |
-| Battery | 20% |
-
-Thresholds can be updated through the REST API.
+1. Identifies the device
+2. Validates the incoming readings
+3. Updates the device status
+4. Stores the telemetry in MySQL
+5. Evaluates alert conditions
+6. Sends real-time updates to connected dashboard clients
 
 ---
 
-## Alert System
+## 🚨 Alert Management
 
-PulseWatch monitors telemetry and creates alerts when abnormal conditions persist.
+PulseWatch generates alerts when telemetry crosses configured thresholds.
 
-### Alert Types
+### Supported Alert Types
 
 - `HIGH_TEMPERATURE`
 - `HIGH_HUMIDITY`
 - `LOW_BATTERY`
 
-### Severity
+### Alert Severity Levels
 
-- LOW
-- MEDIUM
-- HIGH
-- CRITICAL
+- `LOW`
+- `MEDIUM`
+- `HIGH`
+- `CRITICAL`
 
 ### Alert Lifecycle
 
-```text
-        Abnormal readings
-               |
-               v
-             OPEN
-               |
-          Acknowledge
-               |
-               v
-         ACKNOWLEDGED
-               |
-            Resolve
-               |
-               v
-           RESOLVED
-```
+~~~text
+OPEN → ACKNOWLEDGED → RESOLVED
+~~~
 
-PulseWatch requires consecutive abnormal readings before creating an alert. This helps prevent a single temporary reading from immediately generating an alert.
+#### OPEN
 
-Similarly, recovery requires consecutive normal readings before an active alert is automatically resolved.
+The system has detected an abnormal condition.
+
+#### ACKNOWLEDGED
+
+An operator has reviewed the alert and acknowledged it.
+
+#### RESOLVED
+
+The abnormal condition has returned to a normal state and the system has automatically resolved the alert after consecutive normal readings.
 
 ---
 
-## Device Online / Offline Detection
+## 🛡️ Duplicate Alert Prevention
 
-Each device stores the timestamp of its latest telemetry.
+PulseWatch prevents the system from continuously creating new alerts while the same abnormal condition continues.
 
-The backend periodically checks when telemetry was last received.
+For example:
 
-If telemetry has not been received within the configured timeout period, the device is marked:
+~~~text
+Temperature > 80°C
+        ↓
+Abnormal reading 1
+        ↓
+Abnormal reading 2
+        ↓
+Abnormal reading 3
+        ↓
+Create HIGH_TEMPERATURE alert
+        ↓
+Continue monitoring
+~~~
 
-```text
-OFFLINE
-```
-
-When telemetry starts arriving again, the device is marked:
-
-```text
-ONLINE
-```
-
-The status change is also sent to the dashboard through WebSocket.
-
----
-
-## Real-Time Updates
-
-PulseWatch uses WebSocket to update the dashboard without requiring manual page refreshes.
-
-The backend publishes updates for:
-
-```text
-/topic/telemetry
-/topic/alerts
-```
-
-This allows the dashboard to receive:
-
-- New telemetry
-- Device status changes
-- New alerts
-- Alert acknowledgement
-- Alert resolution
-
-in real time.
+If the condition remains abnormal, the existing active alert is reused instead of creating duplicate alerts for every telemetry reading.
 
 ---
 
-## REST API
+## 🔄 Automatic Alert Resolution
 
-### Devices
+Alerts are not immediately resolved after a single normal reading.
 
-#### Register Device
-
-```http
-POST /api/devices
-```
-
-Parameters:
-
-```text
-deviceName
-location
-```
-
-#### Get Devices
-
-```http
-GET /api/devices
-```
-
----
-
-### Telemetry
-
-#### Submit Telemetry
-
-```http
-POST /api/telemetry
-```
-
-Example request:
-
-```json
-{
-    "deviceId": 1,
-    "temperature": 72.5,
-    "humidity": 55.2,
-    "battery": 85.4
-}
-```
-
-#### Get All Telemetry
-
-```http
-GET /api/telemetry
-```
-
-#### Get Device Telemetry
-
-```http
-GET /api/telemetry/device/{deviceId}
-```
-
----
-
-### Alerts
-
-#### Get All Alerts
-
-```http
-GET /api/alerts
-```
-
-#### Get Active Alerts
-
-```http
-GET /api/alerts/active
-```
-
-#### Acknowledge Alert
-
-```http
-PUT /api/alerts/{id}/acknowledge
-```
-
-#### Resolve Alert
-
-```http
-PUT /api/alerts/{id}/resolve
-```
-
----
-
-### Threshold Configuration
-
-#### Get Device Thresholds
-
-```http
-GET /api/thresholds/device/{deviceId}
-```
-
-#### Update Device Thresholds
-
-```http
-PUT /api/thresholds/device/{deviceId}
-```
+PulseWatch requires consecutive normal readings before resolving an alert. This reduces false resolutions caused by temporary fluctuations in telemetry.
 
 Example:
 
-```json
-{
-    "temperatureThreshold": 80,
-    "humidityThreshold": 80,
-    "batteryThreshold": 20
-}
-```
+~~~text
+Abnormal → Abnormal → Abnormal
+                    ↓
+                  ALERT
+                    ↓
+              Normal → Normal
+                    ↓
+                 RESOLVED
+~~~
 
 ---
 
-## Project Structure
+## 📶 Device Online / Offline Detection
 
-```text
+Every telemetry reading updates the device's `lastTelemetryAt` timestamp.
+
+PulseWatch periodically checks this timestamp.
+
+If a device has not sent telemetry within the configured timeout:
+
+~~~text
+ONLINE
+  ↓
+No telemetry received
+  ↓
+Timeout exceeded
+  ↓
+OFFLINE
+~~~
+
+When telemetry resumes:
+
+~~~text
+OFFLINE
+   ↓
+Telemetry received
+   ↓
+ONLINE
+~~~
+
+The status change is also pushed to the dashboard using WebSocket communication.
+
+---
+
+## 🏗️ System Architecture
+
+![PulseWatch Architecture](docs/pulsewatch-architecture.png)
+
+## High-Level Architecture
+
+~~~text
+                    ┌─────────────────────┐
+                    │  Simulated Devices  │
+                    │                     │
+                    │ Temperature         │
+                    │ Humidity            │
+                    │ Battery             │
+                    └──────────┬──────────┘
+                               │
+                               │ REST API
+                               ▼
+                    ┌─────────────────────┐
+                    │   Spring Boot API   │
+                    │                     │
+                    │ Telemetry Service   │
+                    │ Alert Service       │
+                    │ Device Monitoring   │
+                    └──────────┬──────────┘
+                               │
+                    ┌──────────┴──────────┐
+                    │                     │
+                    ▼                     ▼
+             ┌─────────────┐      ┌─────────────┐
+             │    MySQL    │      │  WebSocket  │
+             │             │      │ Real-Time   │
+             │ Telemetry   │      │ Updates     │
+             │ Devices     │      └──────┬──────┘
+             │ Alerts      │             │
+             └─────────────┘             ▼
+                                  ┌─────────────────┐
+                                  │    Dashboard    │
+                                  │                 │
+                                  │ Devices         │
+                                  │ Telemetry       │
+                                  │ Active Alerts   │
+                                  │ Alert History   │
+                                  └─────────────────┘
+~~~
+
+---
+
+## 🔄 How PulseWatch Works
+
+The complete monitoring flow is:
+
+~~~text
+1. Device generates telemetry
+          ↓
+2. Telemetry sent through REST API
+          ↓
+3. Backend validates the data
+          ↓
+4. Device status is updated
+          ↓
+5. Telemetry stored in MySQL
+          ↓
+6. Alert thresholds are evaluated
+          ↓
+7. Alert created / updated if required
+          ↓
+8. WebSocket broadcasts the update
+          ↓
+9. Dashboard updates automatically
+~~~
+
+---
+
+## ⚙️ Alert Logic
+
+Default threshold configuration:
+
+| Metric | Default Threshold | Alert |
+|---|---:|---|
+| Temperature | > 80°C | `HIGH_TEMPERATURE` |
+| Humidity | > 80% | `HIGH_HUMIDITY` |
+| Battery | < 20% | `LOW_BATTERY` |
+
+The thresholds are configurable through the application's threshold configuration functionality.
+
+The system also uses consecutive reading counters to prevent alerts from being triggered by a single temporary abnormal reading.
+
+---
+
+## 🌐 Real-Time Communication
+
+PulseWatch uses **WebSocket with STOMP** for real-time communication between the backend and dashboard.
+
+The backend publishes updates to:
+
+~~~text
+/topic/telemetry
+/topic/alerts
+~~~
+
+### Telemetry Updates
+
+Telemetry updates can contain:
+
+- Device readings
+- Device status changes
+- Latest telemetry information
+
+### Alert Updates
+
+Alert updates can contain:
+
+- New alerts
+- Alert acknowledgements
+- Alert resolutions
+
+This allows the dashboard to update without repeatedly refreshing the browser.
+
+---
+
+## 🧩 REST API
+
+## Device APIs
+
+### Register Device
+
+~~~http
+POST /api/devices?deviceName=Machine-01&location=Factory%20Floor%20A
+~~~
+
+### Get All Devices
+
+~~~http
+GET /api/devices
+~~~
+
+---
+
+## Telemetry APIs
+
+### Submit Telemetry
+
+~~~http
+POST /api/telemetry
+~~~
+
+Example request:
+
+~~~json
+{
+  "deviceId": 1,
+  "temperature": 72.5,
+  "humidity": 48.2,
+  "battery": 91.4
+}
+~~~
+
+### Get All Telemetry
+
+~~~http
+GET /api/telemetry
+~~~
+
+### Get Telemetry for a Device
+
+~~~http
+GET /api/telemetry/device/{deviceId}
+~~~
+
+---
+
+## Alert APIs
+
+### Get All Alerts
+
+~~~http
+GET /api/alerts
+~~~
+
+### Get Active Alerts
+
+~~~http
+GET /api/alerts/active
+~~~
+
+### Acknowledge Alert
+
+~~~http
+PUT /api/alerts/{id}/acknowledge
+~~~
+
+### Resolve Alert
+
+~~~http
+PUT /api/alerts/{id}/resolve
+~~~
+
+---
+
+## 🖥️ Dashboard
+
+The PulseWatch dashboard provides a centralized view of the monitoring system.
+
+It displays:
+
+- Total devices
+- Online devices
+- Offline devices
+- Current telemetry
+- Active alerts
+- Alert severity
+- Recent activity
+- Device status
+- Real-time updates
+
+The interface is designed around a monitoring workflow rather than simply displaying database records.
+
+---
+
+## 📚 Alert History
+
+Alert history is maintained separately from the active monitoring view.
+
+This allows operators to:
+
+- Review previous alerts
+- Identify alert types
+- Check severity
+- Review alert status
+- Understand previous device issues
+
+---
+
+## 📊 Telemetry History
+
+Telemetry history allows previously recorded readings to be retrieved for individual devices.
+
+The backend provides device-specific telemetry through:
+
+~~~http
+GET /api/telemetry/device/{deviceId}
+~~~
+
+This provides a foundation for analyzing how device conditions change over time.
+
+---
+
+## 🛠️ Tech Stack
+
+## Backend
+
+- Java 25
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- Hibernate
+- Bean Validation
+- WebSocket
+- STOMP
+- Maven
+
+## Database
+
+- MySQL 8.0
+
+## Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+## Development & Deployment
+
+- Git
+- GitHub
+- Docker
+- Render
+- Aiven MySQL
+
+> Docker is used as deployment packaging for the hosted application. It is not required for the core application architecture.
+
+---
+
+## 📁 Project Structure
+
+~~~text
 PulseWatch/
 │
 ├── src/
@@ -555,201 +489,259 @@ PulseWatch/
 │   │   ├── java/
 │   │   │   └── com/
 │   │   │       └── pulsewatch/
-│   │   │           │
 │   │   │           ├── config/
-│   │   │           │   └── WebSocketConfig.java
-│   │   │           │
 │   │   │           ├── controller/
-│   │   │           │   ├── AlertController.java
-│   │   │           │   ├── DeviceController.java
-│   │   │           │   ├── TelemetryController.java
-│   │   │           │   └── ThresholdConfigurationController.java
-│   │   │           │
 │   │   │           ├── dto/
-│   │   │           │   ├── TelemetryRequest.java
-│   │   │           │   └── ThresholdConfigurationRequest.java
-│   │   │           │
 │   │   │           ├── entity/
-│   │   │           │   ├── Alert.java
-│   │   │           │   ├── AlertSeverity.java
-│   │   │           │   ├── AlertStatus.java
-│   │   │           │   ├── Device.java
-│   │   │           │   ├── DeviceStatus.java
-│   │   │           │   ├── Telemetry.java
-│   │   │           │   └── ThresholdConfiguration.java
-│   │   │           │
 │   │   │           ├── exception/
-│   │   │           │   ├── GlobalExceptionHandler.java
-│   │   │           │   └── ResourceNotFoundException.java
-│   │   │           │
 │   │   │           ├── repository/
-│   │   │           │   ├── AlertRepository.java
-│   │   │           │   ├── DeviceRepository.java
-│   │   │           │   ├── TelemetryRepository.java
-│   │   │           │   └── ThresholdConfigurationRepository.java
-│   │   │           │
 │   │   │           ├── service/
-│   │   │           │   ├── AlertService.java
-│   │   │           │   ├── DeviceService.java
-│   │   │           │   ├── DeviceStatusMonitorService.java
-│   │   │           │   ├── TelemetryService.java
-│   │   │           │   ├── ThresholdConfigurationService.java
-│   │   │           │   └── WebSocketService.java
-│   │   │           │
+│   │   │           ├── simulator/
 │   │   │           └── PulsewatchApplication.java
 │   │   │
 │   │   └── resources/
 │   │       ├── static/
-│   │       │   ├── index.html
-│   │       │   ├── dashboard.js
-│   │       │   └── ...
+│   │       │   ├── css/
+│   │       │   ├── js/
+│   │       │   └── index.html
 │   │       │
 │   │       └── application.properties
 │   │
 │   └── test/
 │
+├── docs/
+│   └── pulsewatch-architecture.png
+│
+├── Dockerfile
 ├── pom.xml
 ├── mvnw
 ├── mvnw.cmd
-├── .gitignore
 └── README.md
-```
+~~~
 
 ---
 
-## Running the Project
+## 🤖 Device Simulation
 
-### Prerequisites
+PulseWatch uses software-simulated devices instead of physical IoT hardware.
 
-Make sure the following are installed:
+For local development, `DeviceSimulator.java` runs as a standalone Java process and sends telemetry to the backend through REST APIs.
 
-- Java 25
-- MySQL 8
-- Maven or Maven Wrapper
+For the hosted deployment, `VirtualDeviceSimulatorService` runs inside the Spring Boot application and periodically generates telemetry for the deployed demo.
 
-Create the database:
+This allows the public demo to continuously demonstrate the monitoring workflow without requiring physical devices.
 
-```sql
+The simulator generates realistic changing values rather than sending the same fixed reading repeatedly.
+
+---
+
+## ☁️ Live Deployment
+
+The production version of PulseWatch is deployed using:
+
+~~~text
+GitHub
+   ↓
+Render
+   ↓
+Spring Boot Application
+   ├── Virtual Device Simulator
+   ├── REST APIs
+   ├── Alert Processing
+   └── WebSocket
+            ↓
+        Aiven MySQL
+            ↓
+       Live Dashboard
+~~~
+
+## Deployment Configuration
+
+The application uses environment variables for production database configuration.
+
+Database credentials are not stored in the source code.
+
+Example configuration:
+
+~~~properties
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/pulsewatch}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+~~~
+
+The hosted simulator is enabled through:
+
+~~~text
+PULSEWATCH_SIMULATOR_ENABLED=true
+~~~
+
+---
+
+## 💻 Running Locally
+
+## 1. Clone the Repository
+
+~~~bash
+git clone https://github.com/Kushalc05/PulseWatch.git
+cd PulseWatch
+~~~
+
+## 2. Create the MySQL Database
+
+Create a database named:
+
+~~~sql
 CREATE DATABASE pulsewatch;
-```
+~~~
 
----
+## 3. Configure Database Credentials
 
-### Configure Database
+Set the required environment variables.
 
-Update:
+### Windows PowerShell
 
-```text
-src/main/resources/application.properties
-```
+~~~powershell
+$env:SPRING_DATASOURCE_USERNAME="root"
+$env:SPRING_DATASOURCE_PASSWORD="YOUR_MYSQL_PASSWORD"
+~~~
 
-with your MySQL credentials.
+The application uses the following database URL by default:
 
-Example:
+~~~text
+jdbc:mysql://localhost:3306/pulsewatch
+~~~
 
-```properties
-spring.application.name=pulsewatch
+## 4. Start the Spring Boot Application
 
-spring.datasource.url=jdbc:mysql://localhost:3306/pulsewatch
-spring.datasource.username=root
-spring.datasource.password=YOUR_MYSQL_PASSWORD
+### Windows
 
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=false
-spring.jpa.properties.hibernate.format_sql=true
-```
-
-Do not commit your actual database password to GitHub.
-
----
-
-### Start the Backend
-
-From the project root:
-
-```powershell
+~~~powershell
 .\mvnw.cmd spring-boot:run
-```
+~~~
 
-The backend runs on:
+The application starts on:
 
-```text
+~~~text
 http://localhost:8080
-```
+~~~
 
----
-
-### Run the Device Simulator
+## 5. Start the Local Device Simulator
 
 Run:
 
-```text
+~~~text
 DeviceSimulator.java
-```
+~~~
 
-The simulator periodically sends telemetry from the virtual devices to the backend.
+The simulator sends telemetry to:
 
----
+~~~text
+http://localhost:8080/api/telemetry
+~~~
 
-### Open the Dashboard
+The dashboard can then be opened at:
 
-Open the PulseWatch web application through the running Spring Boot application.
-
-The dashboard displays:
-
-- Device status
-- Current telemetry
-- Monitoring metrics
-- Active alerts
-- Alert history
-- Telemetry history
-- Real-time updates
+~~~text
+http://localhost:8080
+~~~
 
 ---
 
-## Validation & Error Handling
+## ✅ Validation & Error Handling
 
-PulseWatch validates incoming telemetry and threshold values before processing them.
+PulseWatch validates incoming telemetry before processing it.
 
-Examples of validation include:
+Example validation rules:
 
-- Temperature range validation
-- Humidity range validation
-- Battery range validation
-- Required request fields
-- Device existence validation
+~~~text
+Temperature: -50°C to 150°C
+Humidity:      0% to 100%
+Battery:       0% to 100%
+~~~
 
-The backend also uses centralized exception handling for resource-related errors.
+Invalid telemetry requests are rejected with an appropriate HTTP error response.
+
+The application also handles missing resources such as non-existent device IDs using custom exceptions.
+
+Example:
+
+~~~text
+Device not found with id: 99
+~~~
+
+This returns an HTTP `404 Not Found` response.
 
 ---
 
-## Database Model
+## 🗄️ Database Model
 
-The main entities are:
+The primary database entities are:
 
-```text
+## Device
+
+Stores information about monitored devices.
+
+~~~text
 Device
-   |
-   +---- Telemetry
-   |
-   +---- Alert
-   |
-   +---- ThresholdConfiguration
-```
+------
+id
+deviceName
+location
+status
+createdAt
+lastTelemetryAt
+~~~
 
-A device can have:
+## Telemetry
 
-- Many telemetry records
-- Many alerts
-- One threshold configuration
+Stores readings generated by devices.
+
+~~~text
+Telemetry
+---------
+id
+device_id
+temperature
+humidity
+battery
+recordedAt
+~~~
+
+## Alert
+
+Stores detected abnormal conditions.
+
+~~~text
+Alert
+-----
+id
+device_id
+alertType
+severity
+status
+message
+createdAt
+~~~
+
+### Relationships
+
+~~~text
+Device
+  │
+  ├──────────< Telemetry
+  │
+  └──────────< Alert
+~~~
+
+One device can have many telemetry records and many alerts.
 
 ---
 
-## Design Approach
+## 🧠 Design Approach
 
-PulseWatch follows a layered Spring Boot architecture:
+PulseWatch follows a layered backend architecture:
 
-```text
+~~~text
 Controller
     ↓
 Service
@@ -757,82 +749,155 @@ Service
 Repository
     ↓
 Database
-```
+~~~
 
-### Controller
+## Controller Layer
 
-Handles HTTP requests and responses.
+Responsible for:
 
-### Service
+- HTTP endpoints
+- Request handling
+- Request validation
+- Response handling
 
-Contains business logic such as telemetry processing, threshold checking, alert generation, and device monitoring.
+## Service Layer
 
-### Repository
+Responsible for:
 
-Uses Spring Data JPA to communicate with the database.
+- Business logic
+- Telemetry processing
+- Alert evaluation
+- Device monitoring
+- Alert lifecycle management
+- WebSocket notifications
 
-### Entity
+## Repository Layer
 
-Represents persistent database data.
+Responsible for:
 
-### DTO
+- Database operations
+- Entity persistence
+- Query methods
 
-Controls and validates incoming API request data.
+## Entity Layer
+
+Represents the database model and domain objects.
 
 ---
 
-## Current Limitations
+## 🔧 Engineering Decisions
 
-PulseWatch is designed as a focused software project rather than a production-scale IoT infrastructure platform.
+## Why REST APIs?
+
+REST provides a simple and widely used communication mechanism for sending telemetry from simulated devices to the backend.
+
+## Why WebSocket?
+
+Traditional polling would require the dashboard to repeatedly request new information.
+
+WebSocket allows the backend to push updates to connected clients as soon as relevant events occur.
+
+## Why MySQL?
+
+Telemetry, devices, and alerts are structured relational data with clear relationships, making MySQL suitable for the project's requirements.
+
+## Why Software-Simulated Devices?
+
+The project focuses on backend monitoring and alert processing rather than physical hardware.
+
+Simulation allows the complete telemetry pipeline to be demonstrated without requiring sensors or embedded hardware.
+
+## Why In-Memory Alert Counters?
+
+The abnormal and normal reading counters are maintained in application memory for the current MVP.
+
+This keeps the implementation simple while demonstrating the alert evaluation logic.
+
+---
+
+## ⚠️ Current Limitations
+
+PulseWatch is a portfolio and learning project rather than a production-scale IoT platform.
 
 Current limitations include:
 
 - Devices are software-simulated rather than physical IoT hardware.
-- The device simulator runs locally.
 - Alert reading counters are maintained in application memory.
-- WebSocket uses Spring's simple message broker.
-- Authentication and authorization are not implemented.
-
-These decisions keep the project focused on backend engineering, monitoring logic, REST APIs, database design, and real-time communication.
+- WebSocket communication uses Spring's simple broker.
+- Authentication and authorization are not currently implemented.
+- The hosted demo uses free-tier infrastructure and therefore has resource and availability limitations.
+- The monitoring system is designed for demonstration and moderate workloads rather than large-scale industrial deployments.
 
 ---
 
-## Future Improvements
+## 🚀 Future Improvements
 
-Possible future improvements include:
+Potential future improvements include:
 
-- Persistent alert monitoring state
+- Persistent monitoring state
 - User authentication and authorization
-- More advanced device management
-- Historical telemetry visualization
-- Notification integrations
-- Deployment to a cloud environment
-- Support for real IoT communication protocols
-- Scalable message processing for large device fleets
+- Device registration and management UI
+- Advanced telemetry visualization
+- Historical charts and analytics
+- Email or push notifications
+- Real IoT protocol integration such as MQTT
+- Persistent alert-processing state
+- Scalable messaging infrastructure
+- Production-grade monitoring and observability
+- Higher-scale cloud infrastructure
+
+These improvements are intentionally kept outside the current MVP to maintain a focused and understandable architecture.
 
 ---
 
-## Project Goal
+## 🎯 Project Goal
 
-PulseWatch was built to demonstrate practical backend development concepts including:
+The main goal of PulseWatch was to build an interview-defensible backend project demonstrating practical understanding of:
 
 - Java
 - Spring Boot
-- REST API design
+- REST API development
 - Spring Data JPA
 - Hibernate
 - MySQL
 - Validation
 - Exception handling
 - Business logic
-- WebSocket communication
-- Real-time monitoring
+- Real-time communication
+- WebSocket
+- Scheduled background processing
 - Database relationships
-- Software-based IoT simulation
+- Software simulation
+- Git and GitHub
+- Cloud deployment
+
+The project focuses on implementing a complete working system rather than adding technologies purely to make the stack appear larger.
 
 ---
 
-## Author
+## 📌 Project Status
+
+**PulseWatch is currently deployed and functional.**
+
+The deployed system has been verified to:
+
+- Generate simulated device telemetry
+- Store telemetry in MySQL
+- Display devices on the dashboard
+- Update device readings in real time
+- Detect threshold violations
+- Generate alerts
+- Prevent duplicate active alerts
+- Acknowledge alerts
+- Resolve alerts
+- Detect device online/offline status
+- Push updates through WebSocket
+- Run using a hosted database
+- Provide a publicly accessible live demo
+
+---
+
+## 👨‍💻 Author
 
 **Kushal C**
 
