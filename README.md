@@ -11,15 +11,26 @@ PulseWatch is a **real-time IoT device monitoring and alert platform** built wit
 
 The platform uses software-simulated IoT devices that continuously generate temperature, humidity, and battery readings. These readings are sent to the backend, validated, stored in MySQL, evaluated against configurable thresholds, and used to generate and manage alerts.
 
-The dashboard receives real-time telemetry, device-status, and alert updates through WebSocket without requiring a page refresh.
-
-> PulseWatch uses software-simulated IoT devices to demonstrate telemetry ingestion, monitoring, threshold-based alerting, and real-time dashboard updates.
+The dashboard receives telemetry and alert updates in real time using WebSocket communication, allowing device and alert information to change without manually refreshing the page.
 
 ---
 
-## Features
+## 🚀 Live Demo
 
-- Software-simulated IoT devices
+**[Open PulseWatch Live Demo](https://pulsewatch-d1yd.onrender.com/)**
+
+## 💻 Source Code
+
+**[View PulseWatch on GitHub](https://github.com/Kushalc05/PulseWatch)**
+
+---
+
+## 📌 Overview
+
+PulseWatch demonstrates how a backend monitoring system can process continuous telemetry from multiple devices and convert that data into useful operational information.
+
+### The system provides
+
 - Device registration and monitoring
 - Simulated IoT telemetry generation
 - Temperature, humidity, and battery monitoring
@@ -901,8 +912,21 @@ The deployed system has been verified to:
 
 **Kushal C**
 
-Computer Science & Engineering Graduate
+B.Tech Computer Science & Engineering
 
-GitHub: `https://github.com/kushalc05`
+Java Backend / Software Developer
 
-LinkedIn: `https://www.linkedin.com/in/kushal-c-sde`
+- **GitHub:** [github.com/Kushalc05](https://github.com/Kushalc05)
+- **LinkedIn:** [linkedin.com/in/kushal-c-sde](https://www.linkedin.com/in/kushal-c-sde)
+
+---
+
+## 🌐 PulseWatch
+
+**[Launch PulseWatch](https://pulsewatch-d1yd.onrender.com/)**
+
+**[View Source Code](https://github.com/Kushalc05/PulseWatch)**
+
+---
+
+⭐ If you found this project interesting, feel free to explore the repository.
