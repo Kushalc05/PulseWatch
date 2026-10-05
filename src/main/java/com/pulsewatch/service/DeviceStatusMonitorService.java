@@ -6,13 +6,14 @@ import com.pulsewatch.repository.DeviceRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class DeviceStatusMonitorService {
 
-    private static final long OFFLINE_TIMEOUT_SECONDS = 15;
+    private static final long OFFLINE_TIMEOUT_SECONDS = 90;
 
     private final DeviceRepository deviceRepository;
     private final WebSocketService webSocketService;
@@ -43,7 +44,7 @@ public class DeviceStatusMonitorService {
             }
 
             long secondsSinceLastTelemetry =
-                    java.time.Duration
+                    Duration
                             .between(lastTelemetryAt, now)
                             .getSeconds();
 
