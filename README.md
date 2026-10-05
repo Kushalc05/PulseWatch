@@ -7,7 +7,189 @@ PulseWatch is a software-based IoT device monitoring platform built with Java an
 It uses simulated IoT devices that periodically generate temperature, humidity, and battery readings. The readings are sent to a Spring Boot backend through REST APIs, stored in MySQL, evaluated against configurable thresholds, and used to generate alerts.
 
 The dashboard receives real-time telemetry, device-status, and alert updates through WebSocket without requiring a page refresh.
+# PulseWatch
 
+### Real-Time IoT Device Monitoring & Alert Platform
+
+[![Java](https://img.shields.io/badge/Java-25-orange)](https://www.oracle.com/java/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.x-brightgreen)](https://spring.io/projects/spring-boot)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/)
+[![WebSocket](https://img.shields.io/badge/WebSocket-Real--Time-black)](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
+
+> A software-based IoT monitoring platform that simulates connected devices, processes telemetry in real time, detects abnormal conditions, manages alerts, and provides a live monitoring dashboard.
+
+**Live Demo:**  
+https://pulsewatch-d1yd.onrender.com/
+
+**GitHub:**  
+https://github.com/Kushalc05/PulseWatch
+
+---
+
+## Overview
+
+PulseWatch is a backend-focused IoT monitoring platform built with **Java and Spring Boot**.
+
+Instead of relying on physical hardware, the system uses **software-simulated IoT devices** that periodically generate:
+
+- Temperature
+- Humidity
+- Battery level
+
+The generated telemetry is processed by the Spring Boot backend, validated, stored in MySQL, evaluated against configurable thresholds, and used to generate alerts when abnormal conditions persist.
+
+The web dashboard receives telemetry, device-status, and alert updates in real time through **WebSocket**, allowing monitoring without manually refreshing the page.
+
+The project is designed to demonstrate practical backend engineering concepts such as:
+
+- REST API design
+- Layered architecture
+- Database relationships
+- Business logic
+- Input validation
+- Exception handling
+- Threshold-based monitoring
+- Alert lifecycle management
+- Real-time communication
+- IoT device simulation
+
+---
+
+# ✨ Key Features
+
+### Device Monitoring
+
+- Register and manage simulated IoT devices
+- Track device locations
+- Monitor device online/offline status
+- Track the latest telemetry timestamp
+
+### Telemetry Processing
+
+- Temperature monitoring
+- Humidity monitoring
+- Battery monitoring
+- REST-based telemetry ingestion
+- Input validation
+- Persistent telemetry history
+- Device-specific telemetry retrieval
+
+### Intelligent Alerting
+
+- Configurable thresholds per device
+- Persistent abnormal-reading detection
+- Alert severity levels
+- Duplicate alert prevention
+- Automatic alert resolution after recovery
+- Alert acknowledgement and resolution
+- Complete alert history
+
+### Real-Time Dashboard
+
+- Live device status
+- Live telemetry readings
+- Active alerts
+- Alert history
+- Telemetry history
+- Real-time updates without page refresh
+- WebSocket-based communication
+
+### Reliability & Validation
+
+- Request validation
+- Device existence validation
+- Centralized exception handling
+- Device offline detection
+- Controlled alert lifecycle
+
+---
+
+# 🛠️ Tech Stack
+
+## Backend
+
+- **Java 25**
+- **Spring Boot**
+- **Spring Data JPA**
+- **Hibernate**
+- **REST APIs**
+- **WebSocket**
+- **Maven**
+
+## Database
+
+- **MySQL 8**
+
+## Frontend
+
+- **HTML**
+- **CSS**
+- **JavaScript**
+
+## Development & Testing
+
+- **Visual Studio Code**
+- **MySQL Workbench**
+- **Postman**
+- **Git**
+- **GitHub**
+
+## Deployment
+
+- **Render**
+- **Aiven MySQL**
+- **Docker**
+
+Docker is used only as the deployment packaging mechanism for the Spring Boot application.
+
+---
+
+# 🏗️ System Architecture
+
+PulseWatch follows a layered Spring Boot architecture where simulated devices generate telemetry, the backend processes the data, and the dashboard receives real-time updates.
+
+```text
+                    ┌──────────────────────┐
+                    │   Virtual Devices    │
+                    │──────────────────────│
+                    │ Temperature           │
+                    │ Humidity              │
+                    │ Battery               │
+                    └──────────┬───────────┘
+                               │
+                               │ REST
+                               ▼
+                    ┌──────────────────────┐
+                    │     Spring Boot      │
+                    │       Backend        │
+                    └──────────┬───────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │                │                │
+              ▼                ▼                ▼
+      ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
+      │   Telemetry  │ │    Alert     │ │    Device    │
+      │    Service   │ │    Service   │ │    Service   │
+      └──────┬───────┘ └──────┬───────┘ └──────┬───────┘
+             │                │                │
+             └────────────────┼────────────────┘
+                              │
+                              ▼
+                     ┌─────────────────┐
+                     │      MySQL      │
+                     │    Database     │
+                     └────────┬────────┘
+                              │
+                              │ WebSocket
+                              ▼
+                  ┌────────────────────────┐
+                  │   PulseWatch Dashboard │
+                  │                        │
+                  │ Live Telemetry         │
+                  │ Device Status          │
+                  │ Active Alerts          │
+                  │ Alert History          │
+                  └────────────────────────┘
 > PulseWatch uses software-simulated IoT devices to demonstrate telemetry ingestion, monitoring, threshold-based alerting, and real-time dashboard updates.
 
 ---
