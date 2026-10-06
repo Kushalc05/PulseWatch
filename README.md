@@ -207,6 +207,29 @@ The status change is also pushed to the dashboard using WebSocket communication.
 
 ---
 
+## 📸 Project Screenshots
+
+### Dashboard
+
+![PulseWatch Dashboard](docs/screenshots/dashboard.png)
+
+### Device Fleet & Active Alerts
+
+| Device Fleet | Active Alerts |
+|---|---|
+| ![Device Fleet](docs/screenshots/device-fleet.png) | ![Active Alerts](docs/screenshots/active-alerts.png) |
+
+### Alert Investigation & Telemetry
+
+| Alert Investigation | Telemetry Analysis |
+|---|---|
+| ![Alert Investigation](docs/screenshots/alert-investigation.png) | ![Telemetry Analysis](docs/screenshots/telemetry-analysis.png) |
+
+### Telemetry History
+
+![Telemetry History](docs/screenshots/telemetry-history.png)
+
+
 ## 🏗️ System Architecture
 
 ![PulseWatch Architecture](docs/pulsewatch-architecture.png)
