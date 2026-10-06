@@ -206,7 +206,7 @@ ONLINE
 The status change is also pushed to the dashboard using WebSocket communication.
 
 ---
-
+   
 ## 📸 Project Screenshots
 
 ### Dashboard
@@ -225,7 +225,7 @@ The status change is also pushed to the dashboard using WebSocket communication.
 |---|---|
 | ![Alert Investigation](docs/screenshots/alert-investigation.png) | ![Telemetry Analysis](docs/screenshots/telemetry-analysis.png) |
 
-### Telemetry History
+### Telemetry History 
 
 ![Telemetry History](docs/screenshots/telemetry-history.png)
 
