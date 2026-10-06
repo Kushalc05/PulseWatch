@@ -15,17 +15,17 @@ The dashboard receives telemetry and alert updates in real time using WebSocket 
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
 **[Open PulseWatch Live Demo](https://pulsewatch-d1yd.onrender.com/)**
 
-## 💻 Source Code
+## Source Code
 
 **[View PulseWatch on GitHub](https://github.com/Kushalc05/PulseWatch)**
 
 ---
 
-## 📌 Overview
+## Overview
 
 PulseWatch demonstrates how a backend monitoring system can process continuous telemetry from multiple devices and convert that data into useful operational information.
 
@@ -51,9 +51,9 @@ PulseWatch demonstrates how a backend monitoring system can process continuous t
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-## 📡 Device Monitoring
+## Device Monitoring
 
 PulseWatch monitors multiple software-simulated devices.
 
@@ -73,7 +73,7 @@ If telemetry stops arriving for the configured timeout period, the device is aut
 
 ---
 
-## 🌡️ Telemetry Processing
+## Telemetry Processing
 
 Each simulated device periodically generates:
 
@@ -94,7 +94,7 @@ The backend then:
 
 ---
 
-## 🚨 Alert Management
+## Alert Management
 
 PulseWatch generates alerts when telemetry crosses configured thresholds.
 
@@ -131,7 +131,7 @@ The abnormal condition has returned to a normal state and the system has automat
 
 ---
 
-## 🛡️ Duplicate Alert Prevention
+## Duplicate Alert Prevention
 
 PulseWatch prevents the system from continuously creating new alerts while the same abnormal condition continues.
 
@@ -155,7 +155,7 @@ If the condition remains abnormal, the existing active alert is reused instead o
 
 ---
 
-## 🔄 Automatic Alert Resolution
+## Automatic Alert Resolution
 
 Alerts are not immediately resolved after a single normal reading.
 
@@ -175,7 +175,7 @@ Abnormal → Abnormal → Abnormal
 
 ---
 
-## 📶 Device Online / Offline Detection
+## Device Online / Offline Detection
 
 Every telemetry reading updates the device's `lastTelemetryAt` timestamp.
 
@@ -207,7 +207,7 @@ The status change is also pushed to the dashboard using WebSocket communication.
 
 ---
    
-## 📸 Project Screenshots
+## Project Screenshots
 
 ### Dashboard
 
@@ -230,7 +230,7 @@ The status change is also pushed to the dashboard using WebSocket communication.
 ![Telemetry History](docs/screenshots/telemetry-history.png)
 
 
-## 🏗️ System Architecture
+## System Architecture
  
 ![PulseWatch Architecture](docs/pulsewatch-architecture.png)
 
@@ -277,7 +277,7 @@ The status change is also pushed to the dashboard using WebSocket communication.
 
 ---
 
-## 🔄 How PulseWatch Works
+## How PulseWatch Works
 
 The complete monitoring flow is:
 
@@ -303,7 +303,7 @@ The complete monitoring flow is:
 
 ---
 
-## ⚙️ Alert Logic
+## Alert Logic
 
 Default threshold configuration:
 
@@ -319,7 +319,7 @@ The system also uses consecutive reading counters to prevent alerts from being t
 
 ---
 
-## 🌐 Real-Time Communication
+## Real-Time Communication
 
 PulseWatch uses **WebSocket with STOMP** for real-time communication between the backend and dashboard.
 
@@ -350,7 +350,7 @@ This allows the dashboard to update without repeatedly refreshing the browser.
 
 ---
 
-## 🧩 REST API
+## REST API
 
 ## Device APIs
 
@@ -429,7 +429,7 @@ PUT /api/alerts/{id}/resolve
 
 ---
 
-## 🖥️ Dashboard
+## Dashboard
 
 The PulseWatch dashboard provides a centralized view of the monitoring system.
 
@@ -449,7 +449,7 @@ The interface is designed around a monitoring workflow rather than simply displa
 
 ---
 
-## 📚 Alert History
+## Alert History
 
 Alert history is maintained separately from the active monitoring view.
 
@@ -463,7 +463,7 @@ This allows operators to:
 
 ---
 
-## 📊 Telemetry History
+## Telemetry History
 
 Telemetry history allows previously recorded readings to be retrieved for individual devices.
 
@@ -477,7 +477,7 @@ This provides a foundation for analyzing how device conditions change over time.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ## Backend
 
@@ -513,7 +513,7 @@ This provides a foundation for analyzing how device conditions change over time.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ~~~text
 PulseWatch/
@@ -591,7 +591,7 @@ PulseWatch/
 
 ---
 
-## 🤖 Device Simulation
+## Device Simulation
 
 PulseWatch uses software-simulated devices instead of physical IoT hardware.
 
@@ -605,7 +605,7 @@ The simulator generates realistic changing values rather than sending the same f
 
 ---
 
-## ☁️ Live Deployment
+## Live Deployment
 
 The production version of PulseWatch is deployed using:
 
@@ -647,7 +647,7 @@ PULSEWATCH_SIMULATOR_ENABLED=true
 
 ---
 
-## 💻 Running Locally
+## Running Locally
 
 ## 1. Clone the Repository
 
@@ -717,7 +717,7 @@ http://localhost:8080
 
 ---
 
-## ✅ Validation & Error Handling
+## Validation & Error Handling
 
 PulseWatch validates incoming telemetry before processing it.
 
@@ -743,7 +743,7 @@ This returns an HTTP `404 Not Found` response.
 
 ---
 
-## 🗄️ Database Model
+## Database Model
 
 The primary database entities are:
 
@@ -807,7 +807,7 @@ One device can have many telemetry records and many alerts.
 
 ---
 
-## 🧠 Design Approach
+## Design Approach
 
 PulseWatch follows a layered backend architecture:
 
@@ -855,7 +855,7 @@ Represents the database model and domain objects.
 
 ---
 
-## 🔧 Engineering Decisions
+## Engineering Decisions
 
 ## Why REST APIs?
 
@@ -885,7 +885,7 @@ This keeps the implementation simple while demonstrating the alert evaluation lo
 
 ---
 
-## ⚠️ Current Limitations
+## Current Limitations
 
 PulseWatch is a portfolio and learning project rather than a production-scale IoT platform.
 
@@ -900,7 +900,7 @@ Current limitations include:
 
 ---
 
-## 🚀 Future Improvements
+## Future Improvements
 
 Potential future improvements include:
 
@@ -920,7 +920,7 @@ These improvements are intentionally kept outside the current MVP to maintain a 
 
 ---
 
-## 🎯 Project Goal
+## Project Goal
 
 The main goal of PulseWatch was to build an interview-defensible backend project demonstrating practical understanding of:
 
@@ -945,7 +945,7 @@ The project focuses on implementing a complete working system rather than adding
 
 ---
 
-## 📌 Project Status
+## Project Status
 
 **PulseWatch is currently deployed and functional.**
 
@@ -967,7 +967,7 @@ The deployed system has been verified to:
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Kushal C**
 
@@ -980,7 +980,7 @@ Java Backend / Software Developer
 
 ---
 
-## 🌐 PulseWatch
+## PulseWatch
 
 **[Launch PulseWatch](https://pulsewatch-d1yd.onrender.com/)**
 
