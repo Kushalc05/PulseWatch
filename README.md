@@ -231,7 +231,7 @@ The status change is also pushed to the dashboard using WebSocket communication.
 
 
 ## 🏗️ System Architecture
-
+ 
 ![PulseWatch Architecture](docs/pulsewatch-architecture.png)
 
 ## High-Level Architecture
